@@ -7,4 +7,4 @@ as an array back to called.
 
 * [Implementing custom interfaces](https://docs.ros.org/en/jazzy/Tutorials/Beginner-Client-Libraries/Single-Package-Define-And-Use-Interface.html)
 
-[* Gazebo (simulator)](https://en.wikipedia.org/wiki/Gazebo_(simulator))
+* [Gazebo (simulator)](https://en.wikipedia.org/wiki/Gazebo_(simulator))
