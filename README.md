@@ -1,0 +1,8 @@
+# RR Image Buffer
+
+monitors image_raw or other image topics, when request is sent returns NUMBER_OF_MESSAGES
+as an array back to called.
+
+## References
+
+[Implementing custom interfaces](https://docs.ros.org/en/jazzy/Tutorials/Beginner-Client-Libraries/Single-Package-Define-And-Use-Interface.html)
