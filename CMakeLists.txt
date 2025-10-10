@@ -11,17 +11,15 @@ find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(ament_cmake REQUIRED)
-find_package(sensor_msgs REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
 
-set(msg_files
-  "msg/GetImage.msg"
-)
 
 rosidl_generate_interfaces(${PROJECT_NAME}
-  ${msg_files}
+  "msg/GetImage.msg"
   DEPENDENCIES sensor_msgs
 )
+
+
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -34,6 +32,22 @@ if(BUILD_TESTING)
   set(ament_cmake_cpplint_FOUND TRUE)
   ament_lint_auto_find_test_dependencies()
 endif()
+
+add_executable(image_buffer src/image_buffer.cpp src/main.cpp)
+target_include_directories(image_buffer
+  PRIVATE
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+    $<INSTALL_INTERFACE:include>
+)
+ament_target_dependencies(image_buffer sensor_msgs rclcpp)
+
+install(TARGETS
+    image_buffer
+  DESTINATION lib/${PROJECT_NAME})
+
+rosidl_get_typesupport_target(cpp_typesupport_target
+  ${PROJECT_NAME} rosidl_typesupport_cpp)
+target_link_libraries(image_buffer "${cpp_typesupport_target}")    
 
 ament_export_dependencies(rosidl_default_runtime)
 ament_package()
